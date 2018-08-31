@@ -16,7 +16,7 @@ div.wrapper{
     background-size: cover;
     color: #fff;
 }
-div h1{
+h1{
     text-align: center;
     font-weight: 100;
     margin-bottom: 20px;
@@ -26,9 +26,6 @@ div h1{
     margin: 0 auto;
     background: rgba(255,255,255,.2);
     padding: 3%;
-}
-#form div{
-    width: 100%;
 }
 #form  input{
     width: 100%;
