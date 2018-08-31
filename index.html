@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="">
+	<title>Front End Level Up</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+         <form id="form" method="post">
+             <h1>Level Up : Advanced Front End</h1>
+         </form>
+    </div>
+   <!--JS-->
+   <script src=jquery-1.12.4.min.js></script>
+   <script>
+      $.ajax({
+            type: 'GET',
+            url: "https://levelup-assessment-backend-ddmwdsdlta.now.sh/api/getFormSchema",
+            data:"{}",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(response) {
+                 $.each(response, function(index, value) {
+                      var input = document.createElement("input");
+                      var span = document.createElement("span");
+                      var label = document.createElement("label");
+                      var form = document.getElementById("form");
+                      input.setAttribute("type", value.type);
+                      input.setAttribute("value", value.value);
+                      span.setAttribute("class", "mark");
+                      if(index == "final_submission"){
+                           input.setAttribute("name", index);
+                           label.innerHTML= "Final Submission";
+                           label.appendChild(input);
+                           label.appendChild(span);
+                           form.appendChild(label);
+                      }
+                      else if(index == "submit"){
+                          input.setAttribute("id","submit");
+                          form.appendChild(input);
+                      }
+                      else{
+                          input.setAttribute("placeholder", index);
+                          input.setAttribute("name",index);
+                          form.appendChild(input);
+                      }
+                        
+                       
+                 });  
+//                for (var key in response) {
+//                  console.log(key, response[key].type);
+//                }
+            },
+            error: function(){
+                console.log("unable to load data");
+            }
+        });
+      var fields,salmasData;
+      $(document).on('click','#submit',function(e){
+            e.preventDefault();
+            fields = {};
+            $("#form").find("input").each(function() {
+             if(this.type !== "submit"){
+                 fields[this.name] = this.value;
+             }             
+                 salmasData = JSON.stringify(fields);
+                
+                
+          });
+              console.log(fields);
+              console.log(salmasData);
+             $.ajax({
+  type: "POST",
+  url: "https://levelup-assessment-backend-ddmwdsdlta.now.sh/api/submission",
+  dataType: "json",
+  contentType : "application/json",
+  data:salmasData,
+  success: function(){
+      alert("yaaaaaaaaaay");
+  },
+  error: function (xhr, msg) {
+    console.log(msg + '\n' + xhr.responseText);
+  },
+ 
+});
+          
+       });
+   </script>
+</body>
+</html>       
