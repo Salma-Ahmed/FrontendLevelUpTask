@@ -58,6 +58,13 @@
                 console.log("unable to load data");
             }
         });
+      $(document).on('click','.mark',function(){
+        if ($('#form input[type="checkbox"]').is(':checked')) {
+            $('#form input[type="checkbox"]').val("false");
+        } else {
+            $('#form input[type="checkbox"]').val("true");
+        }
+       });
       var fields,salmasData;
       $(document).on('click','#submit',function(e){
             e.preventDefault();
@@ -87,6 +94,7 @@
  
 });
        });
+     
    </script>
 </body>
 </html>       

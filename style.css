@@ -79,7 +79,7 @@ label {
 label input {
   position: absolute;
   opacity: 0;
-  cursor: pointer;
+    left: 0;
 }
 .mark {
   position: absolute;
